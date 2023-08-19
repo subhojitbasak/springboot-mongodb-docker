@@ -1,3 +1,54 @@
+# Connecting Spring Boot with MongoDB
+
+There are two ways to link Spring Boot with MongoDB:
+
+## 1. Using Docker Link
+
+(a) Pull the latest Docker MongoDB image:
+    docker pull mongo:latest
+
+(b) Run the Docker MongoDB image:
+    docker run -d -p 27017:27017 --name springmongodb
+
+(c) Create a `Dockerfile` and `application.yml`. Add MongoDB details as mentioned above.
+
+(d) Run Maven build to generate the JAR file inside the `target` folder.
+
+(e) Build the Spring Boot project Docker image:
+
+    docker build -t springboot-mongodb:1.0 .
+
+
+(f) Link the project with the MongoDB container:
+ docker run -p 8080:8080 --name springboot-mongodb --link springmongodb:mongo -d springboot-mongodb:1.0
+
+
+
+(g) Use Postman to test and populate the collection.
+
+(h) Access the MongoDB terminal inside the container:
+docker exec -it springmongodb /bin/sh
+
+
+(i) Run these commands to interact with the MongoDB:
+mongosh
+show dbs
+use Books
+show collections
+db.book.find().pretty()
+
+
+## 2. Using Docker Compose
+
+Simply run the following command from the directory where `docker-compose.yml` is present:
+docker-compose up
+
+
+
+
+
+
+
 #to link spring boot with mongo there are two ways to do so:
 1. using docker link
  (a) Pull docker mongo image : docker pull mongo:latest >> Run "docker images" to check the image installed or not
