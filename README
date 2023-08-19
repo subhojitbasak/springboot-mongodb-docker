@@ -8,7 +8,7 @@ There are two ways to link Spring Boot with MongoDB:
     docker pull mongo:latest
 
 (b) Run the Docker MongoDB image:
-    docker run -d -p 27017:27017 --name springmongodb
+    docker run -d -p 27017:27017 --name springmongodb mongo:latest
 
 (c) Create a `Dockerfile` and `application.yml`. Add MongoDB details as mentioned above.
 
