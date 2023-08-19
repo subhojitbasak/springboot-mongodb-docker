@@ -1,0 +1,14 @@
+#to link spring boot with mongo there are two ways to do so:
+1. using docker link
+ (a) Pull docker mongo image : docker pull mongo:latest >> Run "docker images" to check the image installed or not
+ (b) Run docker mongo image : docker run -d -p 27014:27014 --name springmongodb >> Run "docker ps" to check the container is running or not
+ (c) Create Dockerfile and application.yml add mongo details as mentioned above
+ (d) run maven build to generate the jar file inside the target folder
+ (e) Build springboot project : docker build -t springboot-mongodb:1.0 .
+ (f) link the project with mongo image : docker run -p 8080:8080 --name springboot-mongodb --link springmongodb:mongo -d springboot-mongodb:1.0
+ (g) Use postman to test it and populate the collection
+ (h) Run this command to open terminal of the mongo image : docker exec -it springmongodb /bin/sh
+ (i) Run this list of commands to see the content inside mongo db: mongosh , show dbs, use Books, show collections, db.book.find().pretty()
+
+
+#2. using docker compose --> here you just need to run the command : "docker-compose up" from the path where docker compose present
